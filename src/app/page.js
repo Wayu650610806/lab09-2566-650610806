@@ -10,16 +10,19 @@ import { useState } from "react";
 export default function Home() {
   //tasks = array of {id: string, title: string, completed: boolean}
   const [tasks, setTasks] = useState([]);
-
+  const [doneTasks, setDone] = useState(0);
+  const [allTasks, setAll] = useState(0);
   const addTask = (newTaskTitle) => {
     const newTask = { id: nanoid(), title: newTaskTitle, completed: false };
     const newTasks = [...tasks, newTask];
     setTasks(newTasks);
+    setAll(allTasks + 1);
   };
 
   const deleteTask = (taskId) => {
     const newTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(newTasks);
+    setAll(allTasks - 1);
   };
 
   const toggleDoneTask = (taskId) => {
@@ -30,6 +33,8 @@ export default function Home() {
     const task = newTasks.find((x) => x.id === taskId);
     task.completed = !task.completed;
     setTasks(newTasks);
+    if (task.completed === true) setDone(doneTasks + 1);
+    if (task.completed === false) setDone(doneTasks - 1);
   };
 
   return (
@@ -41,7 +46,7 @@ export default function Home() {
       <div style={{ maxWidth: "400px" }} className="mx-auto">
         {/* Task summary */}
         <p className="text-center text-secondary fst-italic">
-          All (...) Done (...)
+          All ({allTasks}) Done ({doneTasks})
         </p>
         {/* task input */}
         <TaskInput addTaskFunc={addTask} />
@@ -60,7 +65,7 @@ export default function Home() {
       </div>
 
       {/* //footer section */}
-      <Footer year="2023" fullName="Chayanin Suatap" studentId="12345678" />
+      <Footer year="2023" fullName="Wayu Tharai" studentId="650610806" />
     </div>
   );
 }
