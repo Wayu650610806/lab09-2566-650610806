@@ -50,7 +50,6 @@ export default function Home() {
         </p>
         {/* task input */}
         <TaskInput addTaskFunc={addTask} />
-
         {/* tasks mapping*/}
         {tasks.map((task) => (
           <Task

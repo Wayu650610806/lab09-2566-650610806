@@ -11,7 +11,8 @@ export const Task = ({
   const doneBtnOnClick = () => {
     toggleDoneTaskFunc(id);
   };
-  return (
+  return 
+  
     <div className="d-flex p-3 gap-2 align-items-center border-bottom">
       {/*
       HINTS: if task is completed, below "span" will show like this 
